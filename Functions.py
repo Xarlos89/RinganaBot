@@ -112,4 +112,82 @@ def TEST_Cart_Add_ranItem():
 	except:
 		print('Error opening Personal Shopping Cart') # TO-DO: Fix Crash bug when product is unavailible
 
+def TEST_new_Customer():
+	# Create an Austrian
+	fake = Faker(['de_AT'])
+	vorname = fake.first_name()
+	nachname = fake.last_name()
+	email = fake.ascii_email()
+	hausnummer = fake.building_number()
+	strasse = fake.street_name()
+	plz = fake.postcode()
+	stadt = fake.city()
+	phone = fake.msisdn()
+	steuernummer = fake.ssn()
 
+	#Eexecute test
+	driver.get(TEST_url + '/mein-team')
+	time.sleep(4)
+	new_cust_button = driver.find_element_by_xpath('//*[@id="post-64194"]/section/div[1]/div[2]/div[1]/button[2]/span')
+	new_cust_button.click()
+	time.sleep(4)
+
+	# 'Master data'
+	email_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[1]/div/div/div/div/div[2]/label/input')
+	email_box.send_keys(email)
+	vorname_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[1]/div/div/div/div/div[3]/label/input')
+	vorname_box.send_keys(vorname)
+	nachname_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[1]/div/div/div/div/div[4]/label/input')
+	nachname_box.send_keys(nachname)
+	birthday_day_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[1]/div/div/div/div/div[5]/div/div[1]/select')
+	birthday_day_box.send_keys(random.randint(1,2))
+	birthday_day_box.send_keys(Keys.ENTER)
+	birthday_month_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[1]/div/div/div/div/div[5]/div/div[2]/select')
+	for i in range(random.randint(1,3)):
+		birthday_month_box.send_keys('j')
+	birthday_month_box.send_keys(Keys.ENTER)
+	birthday_year_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[1]/div/div/div/div/div[5]/div/div[3]/select')
+	for i in range(random.randint(1,100)):
+		birthday_year_box.send_keys('1')
+	birthday_year_box.send_keys(Keys.ENTER)
+
+	# Address Data
+
+	strasse_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[3]/div/div/div/div/div[1]/label/input')
+	strasse_box.send_keys(strasse)
+	house_number_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[3]/div/div/div/div/div[2]/label/input')
+	house_number_box.send_keys(hausnummer)
+	plz_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[3]/div/div/div/div/div[4]/label/input')
+	plz_box.send_keys(plz)
+	city_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[3]/div/div/div/div/div[5]/label/input')
+	city_box.send_keys(stadt)
+	country_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[3]/div/div/div/div/div[6]/label/span/span[1]')
+	country_box.click()
+	time.sleep(.5)
+	AT = driver.find_element_by_xpath('/html/body/div[13]/ul/li[2]/div')
+	AT.click()
+
+	# Kontaktdaten
+
+	phone_type = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[1]/label/span/span[1]')
+	phone_type.click()
+	mobile = driver.find_element_by_xpath('/html/body/div[14]/ul/li[3]/div')
+	mobile.click()
+	country_code = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[2]/label/span/span[1]')
+	country_code.click()
+	AT49 = driver.find_element_by_xpath('/html/body/div[15]/ul/li[2]/div')
+	AT49.click()
+	vorwahl_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[3]/label/input')
+	vorwahl_box.send_keys('066')
+	rufnummer_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[4]/label/input')
+	rufnummer_box.send_keys(phone)
+	accept_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/p[3]/div/label/div/div/div')
+	accept_box.click()
+	
+	print('Name: ' + vorname + ' ' + nachname)
+	print('Email: ' + email)
+	print('Address: '+ strasse + ' ' + hausnummer + ', ' + plz + ' ' + 'stadt')
+
+
+	confirm = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/div[1]/button/span')
+	confirm.click()
