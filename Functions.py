@@ -183,10 +183,11 @@ def TEST_new_Customer():
 	rufnummer_box.send_keys(phone)
 	accept_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/p[3]/div/label/div/div/div')
 	accept_box.click()
-
+	
 	print('Name: ' + vorname + ' ' + nachname)
 	print('Email: ' + email)
 	print('Address: '+ strasse + ' ' + hausnummer + ', ' + plz + ' ' + 'stadt')
+
 
 	confirm = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/div[1]/button/span')
 	confirm.click()
