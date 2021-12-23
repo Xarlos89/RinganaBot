@@ -5,7 +5,7 @@ def TEST_Cart_addItem(): # Opens testing, tests products in shopping cart.
 	login_to_test()
 	TEST_Cart_Add_ranItem()
 
-def TEST_make_new_customer():
+def TEST_make_new_customer(): # Creates a new test customer
 	login_to_test()
 	TEST_new_Customer()
 
