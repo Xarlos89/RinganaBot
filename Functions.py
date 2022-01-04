@@ -165,17 +165,20 @@ def TEST_new_Customer():
 	country_box.click()
 	time.sleep(.5)
 	AT = driver.find_element_by_xpath('/html/body/div[13]/ul/li[2]/div')
-	AT.click()
+	time.sleep(.5)
+	Austria = driver.find_element_by_xpath('/html/body/div[12]/ul/li[2]/div')
+	time.sleep(.5)
+	Austria.click()
 
 	# Kontaktdaten
 
 	phone_type = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[1]/label/span/span[1]')
 	phone_type.click()
-	mobile = driver.find_element_by_xpath('/html/body/div[14]/ul/li[3]/div')
+	mobile = driver.find_element_by_xpath('/html/body/div[13]/ul/li[3]/div')
 	mobile.click()
 	country_code = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[2]/label/span/span[1]')
 	country_code.click()
-	AT49 = driver.find_element_by_xpath('/html/body/div[15]/ul/li[2]/div')
+	AT49 = driver.find_element_by_xpath('/html/body/div[14]/ul/li[2]/div')
 	AT49.click()
 	vorwahl_box = driver.find_element_by_xpath('/html/body/main/div[3]/article/section/div[2]/ul/li[4]/div/div/div/div[3]/label/input')
 	vorwahl_box.send_keys('066')
